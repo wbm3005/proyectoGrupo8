@@ -13,6 +13,11 @@ public class FlujoJuego {
     private PilaCastigos pilaCastigos;
     private Scanner scanner;
 
+    /**
+     * constructor encargado de inicializar las instancias de otras clases
+     * tambien inicializa el metodo Scanner para el input del usuario
+     * Carga las Pilas de premios y castigos con sus respectivos elementos
+     */
     public FlujoJuego() {
         this.colaJugadores = new ColaJugadores();
         this.pilaPremios = new PilaPremios();
@@ -23,7 +28,10 @@ public class FlujoJuego {
         cargarPilas();
     }
 
-    private void cargarPilas() {
+    /**
+     * Agrega a las pilas de premios y castigos sus respectivos elementos
+     */
+    public final void cargarPilas() {
         // Pila de Premios
         pilaPremios.apilar(new PremiosCastigos("+", 2, "Significa que suma dos posiciones."));
         pilaPremios.apilar(new PremiosCastigos("+", 8, "Significa que suma ocho posiciones."));
@@ -35,7 +43,12 @@ public class FlujoJuego {
         pilaCastigos.apilar(new PremiosCastigos("-", 5, "Significa que resta cinco posiciones."));
     }
 
-    private void aplicarPremioOCastigo(Jugador jugador, PremiosCastigos premioCastigo) {
+    /**
+     * Metodo que le aplica el premio o castigo recibido al jugador
+     * @param jugador objeto de tipo/clase Jugador que representa el jugador
+     * @param premioCastigo objeto de tipo/clase PremiosCastigos que representa el premio o castigo
+     */
+    public void aplicarPremioOCastigo(Jugador jugador, PremiosCastigos premioCastigo) {
 
         int nuevaPosicion = jugador.getPosicion();
 
@@ -59,6 +72,9 @@ public class FlujoJuego {
         jugador.setPosicion(nuevaPosicion);
     }
 
+    /**
+     * Ejecuta el turno del jugador, tirando los dados, analizando el resultado y aplicando el premio o castigo segun corresponda
+     */
     public void ejecutarTurno() {
         // verificar si hay jugadores en la cola
         if (colaJugadores.estaVacia()) {
@@ -90,10 +106,12 @@ public class FlujoJuego {
                 System.out.println("Premio obtenido: " + premio);
                 // aplicar operacion a la posicion del jugador
                 aplicarPremioOCastigo(jugadorActual, premio);
-            } else {
+            } 
+            else {
                 System.out.println("Ya no quedan mas premios...");
             }
-        } else {
+        } 
+        else {
             System.out.println("Obtuviste un número impar, debes tomar un castigo de la pila. Mejor suerte la próxima vez");
 
             // desapilar un castigo
@@ -102,7 +120,8 @@ public class FlujoJuego {
                 System.out.println("Castigo obtenido: " + castigo);
                 // Aplicar operación a la posición del jugador
                 aplicarPremioOCastigo(jugadorActual, castigo);
-            } else {
+            } 
+            else {
                 System.out.println("Ya no quedan mas castigos...");
             }
         }
@@ -112,6 +131,9 @@ public class FlujoJuego {
         colaJugadores.encolar(jugadorActual);
     }
 
+    /**
+     * Menu inicial del juego el cual decide si se inicia la partida, se muestra la ayuda o se cierra el juego
+     */
     public void iniciar() {
         boolean salir = false;
         while (!salir) {
@@ -142,7 +164,10 @@ public class FlujoJuego {
         scanner.close();
     }
 
-    private void iniciarJuego() {
+    /**
+     * Inicia la partida pidiendo la cantidad de jugadores asi como su nombre para agregarlos a la cola de listos/preparados
+     */
+    public void iniciarJuego() {
         System.out.print("Ingrese la cantidad de jugadores (mínimo 2 y máximo 4): ");
         int cantidadJugadores = scanner.nextInt();
         scanner.nextLine();
@@ -167,7 +192,11 @@ public class FlujoJuego {
         menuPartida();
     }
 
-    private void menuPartida() {
+    /**
+     * Muestra el menu disponible mientras la partida este en curso
+     * Le permite al jugador ejecutar su turno, ver el estado de la cola, ver los premios y castigos restantes, abandonar el juego y terminar la partida
+     */
+    public void menuPartida() {
         boolean terminarJuego = false;
         while (!terminarJuego) {
             // Mostrar el jugador que tiene el turno actual (el que está al frente de la cola)
@@ -223,7 +252,10 @@ public class FlujoJuego {
         }
     }
 
-    private void mostrarAyuda() {
+    /**
+     * Muestra la ayuda del juego asi como su version y desarrolladores
+     */
+    public void mostrarAyuda() {
         System.out.println("\n=== AYUDA ===");
         System.out.println("1. Iniciar juego: Comienza el proceso de registro de jugadores. Se solicitará la cantidad (entre 2 y 4) y el nombre de cada uno.");
         System.out.println("2. Ayuda: Muestra esta información.");

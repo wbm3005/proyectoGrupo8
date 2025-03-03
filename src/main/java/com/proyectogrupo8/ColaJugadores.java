@@ -9,11 +9,15 @@ public class ColaJugadores {
     private NodoCola frente;
     private NodoCola ultimo;
 
+    /**
+     * constructor, inicializa los punteros en null 
+     */
     public ColaJugadores() {
         this.frente = null;
         this.ultimo = null;
     }
 
+    // Getters y Setters
     public NodoCola getFrente() {
         return frente;
     }
@@ -30,7 +34,10 @@ public class ColaJugadores {
         this.ultimo = ultimo;
     }
     
-    
+    /**
+     * Metodo para agregar un jugador a la cola
+     * @param jugador objeto de tipo/clase Jugador el cual se va a encolar
+     */
     public void encolar(Jugador jugador) {
         NodoCola aux = new NodoCola(jugador);
         aux.setJugador(jugador);
@@ -43,6 +50,10 @@ public class ColaJugadores {
         this.setUltimo(aux);
     }
     
+    /**
+     * Metodo para eliminar un jugador de la cola
+     * @return un objeto aux el cual contiene los datos del nodo eliminado
+     */
     public NodoCola desencolar() {
         NodoCola aux = new NodoCola();
         
@@ -59,28 +70,25 @@ public class ColaJugadores {
         return aux;
     }
     
+    /**
+     * Metodo para obtener el primer elemento de la cola
+     * @return retorna el primer elemento de la cola
+     */
     public NodoCola frente() {
         return this.frente;
     }
 
+    /**
+     * Metodo para verificar si la cola esta vacia o no
+     * @return true o false dependiendo del estado de la cola
+     */
     public boolean estaVacia() {
         return this.frente == null;
     }
     
-    
-    public int cuentaParticipantes(){
-    
-        int cantidadJugadores = 0;
-        NodoCola actual = frente;
-        
-        while (actual != null){
-            cantidadJugadores++;
-            actual = actual.getSiguiente();
-        }
-        return cantidadJugadores;
-    }
-    
-    
+    /**
+     * Metodo para mostrar los elementos dentro de la cola
+     */
     public void mostrarCola() {
         if (estaVacia()) {
             System.out.println("La cola de jugadores está vacía.");
@@ -93,6 +101,12 @@ public class ColaJugadores {
         }
     }
     
+    /**
+     * Remueve de la cola el jugador cuyo ID coincide con el parametro dado
+     * @param id id del jugador que quiere salir del juego
+     * @return {@code true} si encontro y removio un jugador con el ID especificado
+     *         {@code false} no encontro un jugador con el ID especificado
+     */
     public boolean removerJugadorPorId(int id){
         if (estaVacia()){
             return false;

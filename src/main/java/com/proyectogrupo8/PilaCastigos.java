@@ -10,6 +10,9 @@ public class PilaCastigos extends Pila {
         super();
     }
     
+    /**
+     * Muestra los elementos de la Pila castigos
+     */
     public void mostrarPila() {
         if (esVacia()) {
             System.out.println("La pila de castigos esta vacia.");

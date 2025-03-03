@@ -10,6 +10,9 @@ public class PilaPremios extends Pila {
         super();
     }
     
+    /**
+     * Muestra los elementos de la Pila de premios
+     */
     public void mostrarPila() {
         if (esVacia()) {
             System.out.println("La pila de premios esta vacia.");

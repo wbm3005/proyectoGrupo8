@@ -10,15 +10,26 @@ public class PremiosCastigos {
     private int numeroPosiciones;
     private String descripcion;
 
+    /**
+     * constructor sin parametros
+     */
     public PremiosCastigos() {
     }
 
+    /**
+     *
+     * @param operacion operacion a realizar '"+", "-", "="'
+     * @param numeroPosiciones valor que otorga el premio o castigo recibido
+     * @param descripcion descripcion del premio o castigo
+     */
     public PremiosCastigos(String operacion, int numeroPosiciones, String descripcion) {
         this.operacion = operacion;
         this.numeroPosiciones = numeroPosiciones;
         this.descripcion = descripcion;
     }
 
+    
+    // Getters y Setters
     public String getOperacion() {
         return operacion;
     }
